@@ -1,0 +1,67 @@
+<html>
+
+<form id="simple" name="searchForm" method="get" target="_self"
+    action="https://orbiscascade-washington-psb.primo.exlibrisgroup.com/discovery/"
+    enctype="application/x-www-form-urlencoded; charset=utf-8" onsubmit="searchPrimo()">
+
+    <input name="vid" type="hidden" value="01ALLIANCE_UW:UW_Dev">
+    <input name="tab" type="hidden" value="UW_default">
+    <input name="search_scope" type="hidden" value="UW_EVERYTHING">
+    <input name="lang" type="hidden" value="en"><input id="primoQuery" name="query" type="hidden"><label
+        for="queryTemp">Articles, books + more</label>
+    <input class="search-query" id="primoQueryTemp" name="queryTemp" type="text"
+        placeholder="Articles, Books + More - UW Libraries Search">
+    <!-- Search Button. Change style= as you like for font/size/border-->
+    <input id="go" title="Search" onclick="searchPrimo()" type="button" value="Go" alt="Search"
+        style="border-radius: 4px; font-family: Helvetica, Arial, sans-serif; background: linear-gradient(#2d95b7, #23748e); color: #ffffff; border: 1px solid;">
+    <div class="btn-group">
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,pbooks"
+            onclick="searchPrimoPfilter()">Books</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,ebooks"
+            onclick="searchPrimoPfilter()">eBooks</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,articles"
+            onclick="searchPrimoPfilter()">Articles</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,journals"
+            onclick="searchPrimoPfilter()">Journals</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,images"
+            onclick="searchPrimoPfilter()">Images</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,videos"
+            onclick="searchPrimoPfilter()">Streaming Video</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,audios"
+            onclick="searchPrimoPfilter()">Streaming Audio</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,dissertations"
+            onclick="searchPrimoPfilter()">Dissertations & Theses</button>
+        <button type="submit" id="pfilter" name="pfilter" value="rtype,exact,scores"
+            onclick="searchPrimoPfilter()">Scores</button>
+    </div>
+
+
+</form>
+<script type="text/javascript">
+    function searchPrimo() {
+        document.getElementById("primoQuery").value = "any,contains," + document.getElementById("primoQueryTemp").value.replace(/[,]/g, " ");
+
+
+        document.forms["searchForm"].submit();
+    }
+
+    function searchPrimoPfilter() {
+        document.getElementById("primoQuery").value = "any,contains," + document.getElementById("primoQueryTemp").value.replace(/[,]/g, " ") + "&pfilter=" + document.getElementById("pfilter");
+
+
+        document.forms["searchForm"].submit();
+    }
+</script>
+
+</html>
+
+<!--
+
+    
+    &pfilter=rtype,exact,pbooks
+    &pfilter=rtype,exact,books
+    &pfilter=rtype,exact,articles
+    &pfilter=rtype,exact,journals
+    &pfilter=rtype,exact,images
+    &pfilter=rtype,exact,videos
+-->
